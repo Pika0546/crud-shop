@@ -1,10 +1,8 @@
-const {models, testConnect, sequelize} = require('../models');
-const imagelink = require('../models/imagelink');
-
+const {models} = require('../models');
 const Util = require('../utilities/Util');
 
 class ProductService{
-
+    //Có thể tham khảo cái BrandService bên Admin nha
     list(){
         
     }

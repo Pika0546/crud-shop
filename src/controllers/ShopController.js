@@ -7,11 +7,30 @@ class ShopController{
         res.render('shop/shop');
     }
 
+// ====== Mấy hàm này hồi đó t code để ra giao diện thôi
+// ====== CODE LẠI HẾT NHA, ĐỌC TỪ DỮ LIỆU RA
+//Dùng cái muốn lấy cái gì thì dùng service tương ứng
+//Tạo thêm service trong thư mục Sercices nha
+// t có commet trên mỗi hàm cái dòng:
+//[GET] /:brand/:gender/:category/:id
+//Sau dấu hai chấm chính là request á
+//muốn lấy thì dùng req.params
+
+    //Xem chi tiết sản phẩm
      //[GET] /:brand/:gender/:category/:id
     fullview(req, res, next){
         res.render("shop/fullview");
     }
 
+    //Mấy giá trị brand, gender, category dưới này có thể là all nha
+    //Khi brand là all tức là brand nào cũng lấy, tương tự với cate với gender
+    //Nếu tất cả là all hết thì là ra trang shop - hiển thị tất cả sản phẩm
+    //khi giá trị của brand, gender, category không phải là all á, thì nó chính là
+    //cái cột slug trong cơ sở dữ liệu, dựa vào cái slug đó mà truy vấn
+
+     //Hàm này để render ra tất cả sản phẩm trong :category 
+     //Và thuộc :brand giới tính là :gender
+     //Nhớ kiểm tra vụ all nói ở trên nha
      //[GET] /:brand/:gender/:category/
     shopByCategory(req, res, next){
         const brand = req.params.brand;
@@ -76,6 +95,9 @@ class ShopController{
             
     }
 
+     //Hàm này để render ra tất cả sản phẩm giới tính :gender 
+     //Và thuộc :brand
+     //Nhớ kiểm tra vụ all nói ở trên nha
     //[GET] /:brand/:gender
     shopByGender(req, res, next){
         const brand = req.params.brand;
@@ -120,6 +142,7 @@ class ShopController{
         }
     }
 
+    //Hàm này render ra tất cả sản phẩm của một :brand
     //[GET] /:brand
     shopByBrand(req, res, next){
         const brand = req.params.brand;
@@ -136,10 +159,9 @@ class ShopController{
             }
             res.render('shop/brand', {
                 brand : util.getUIBrandName(brand),
-                link: "/shop/" +brand
+                link: "/shop/" + brand
             });
         }
-        
     }
 }
 
